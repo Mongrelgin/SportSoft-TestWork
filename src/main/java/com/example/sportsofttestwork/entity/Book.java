@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,9 @@ public class Book extends AbstractEntity {
     @NotNull
     @NotEmpty
     private String title;
+
+    @Lob
+    private Byte[] picture;
 
     @ManyToOne
     @JoinColumn(name = "genre_id")

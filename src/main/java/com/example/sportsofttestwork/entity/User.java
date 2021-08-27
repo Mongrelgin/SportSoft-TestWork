@@ -18,6 +18,7 @@ public class User extends AbstractEntity {
     @NotEmpty
     private String pass;
 
+
     @Override
     public String toString() {
         return "User{" +
