@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="sat, 01 Dec 2001 00:00:00 GMT">
-    <title>tecno-tab | home</title>
+    <title>Library</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -18,12 +18,12 @@
 <body>
 <div role="navigation">
     <div class="navbar navbar-inverse">
-        <a href="/welcome" class="navbar-brand">Tecno-Tab</a>
+        <a href="/home-page" class="navbar-brand">Library</a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">New Registration</a></li>
-                <li><a href="/show-users">All Users</a></li>
+                <li><a href="/books-page">Books</a></li>
+                <li><a href="/authors-page">Authors</a></li>
+                <li><a href="/genres-page">Genres</a></li>
             </ul>
         </div>
     </div>
