@@ -38,4 +38,8 @@ public class UserService {
         }
         repository.save(user);
     }
+
+    public User findByLoginAndPass(String login, String pass) {
+        return repository.findByLoginAndPass(login, pass);
+    }
 }

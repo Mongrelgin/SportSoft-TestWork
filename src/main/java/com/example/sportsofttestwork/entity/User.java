@@ -3,7 +3,6 @@ package com.example.sportsofttestwork.entity;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
