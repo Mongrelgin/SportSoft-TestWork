@@ -69,7 +69,7 @@
         <div class="container text-center">
             <h3>User Login</h3>
             <hr>
-            <form class="form-horizontal" method="POST" action="/login">
+            <form class="form-horizontal" method="POST" action="/login-user">
                 <c:if test="${not empty error }">
                     <div class= "alert alert-danger">
                         <c:out value="${error }"></c:out>

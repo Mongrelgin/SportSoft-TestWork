@@ -28,8 +28,8 @@ public class BookService  {
         return repository.findById(id).get();
     }
 
-    public void deleteBook(Book book) {
-        repository.delete(book);
+    public void deleteBook(Long id) {
+        repository.deleteById(id);
     }
 
     public void saveBook(Book book) {

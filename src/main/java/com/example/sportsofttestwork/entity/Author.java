@@ -10,7 +10,8 @@ import java.util.List;
 
 @Entity
 @Data
-public class Author extends AbstractEntity {
+public class Author extends AbstractEntity{
+
     @NotNull
     @NotEmpty
     private String name;

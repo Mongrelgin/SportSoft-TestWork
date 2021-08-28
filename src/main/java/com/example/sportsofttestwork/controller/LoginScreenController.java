@@ -37,7 +37,13 @@ public class LoginScreenController {
     }
 
     @RequestMapping ("/login")
-    public String login(@ModelAttribute User user, HttpServletRequest request) {
+    public String login(HttpServletRequest request) {
+        request.setAttribute("mode", "MODE_LOGIN");
+        return "loginscreen";
+    }
+
+    @RequestMapping ("/login-user")
+    public String loginUser(@ModelAttribute User user, HttpServletRequest request) {
         if(service.findByLoginAndPass(user.getLogin(), user.getPass())!=null) {
             return "mainscreen";
         }
@@ -45,7 +51,6 @@ public class LoginScreenController {
             request.setAttribute("error", "Invalid Username or Password");
             request.setAttribute("mode", "MODE_LOGIN");
             return "loginscreen";
-
         }
     }
 }

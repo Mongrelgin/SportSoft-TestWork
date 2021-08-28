@@ -27,12 +27,12 @@ public class GenreService {
         return repository.findById(id).get();
     }
 
-    public void deleteGenre(Genre genre) {
-        if (genre.getBooks().size() == 0) {
+    public void deleteGenre(Long id) {
+        if (repository.findById(id).get().getBooks().size() > 0) {
             LOGGER.log(Level.SEVERE, "Can't delete genres to which books are linked!");
             return;
         }
-        repository.delete(genre);
+        repository.deleteById(id);
     }
 
     public void saveGenre(Genre genre) {

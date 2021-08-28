@@ -27,12 +27,12 @@ public class AuthorService {
         return repository.findById(id).get();
     }
 
-    public void deleteAuthor(Author author) {
-        if (author.getBooks().size() == 0) {
+    public void deleteAuthor(Long id) {
+        if (repository.findById(id).get().getBooks().size() == 0) {
             LOGGER.log(Level.SEVERE, "Can't delete authors to which books are linked!");
             return;
         }
-        repository.delete(author);
+        repository.deleteById(id);
     }
 
     public void saveAuthor(Author author) {
