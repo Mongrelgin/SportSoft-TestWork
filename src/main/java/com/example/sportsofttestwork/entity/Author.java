@@ -17,7 +17,7 @@ public class Author extends AbstractEntity{
     private String name;
 
     @Lob
-    private Byte[] picture;
+    private byte[] picture;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Book> books = new LinkedList<>();

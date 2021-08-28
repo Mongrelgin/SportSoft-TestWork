@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="container text-center">
-            <h3>New Registration</h3>
+            <h3>New Genre</h3>
             <hr>
             <form class="form-horizontal" method="POST" action="add-genre">
 
@@ -93,6 +93,90 @@
             </form>
         </div>
     </c:when>
+    <c:when test="${mode=='MODE_AUTHOR' }">
+        <div class="container text-center" id="authorsDiv">
+            <h3>Authors</h3>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="author" items="${authors }">
+                        <tr>
+                            <td>${author.id}</td>
+                            <td>${author.title}</td>
+                            <td><a href="/delete-author?id=${author.id }"><span
+                                    class="glyphicon glyphicon-trash"></span></a></td>
+                            <td><a href="/edit-author?id=${author.id }"><span
+                                    class="glyphicon glyphicon-pencil"></span></a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container text-center">
+            <h3>New Author</h3>
+            <hr>
+            <form class="form-horizontal" method="POST" action="add-author" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Name</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Photo</label>
+                    <div class="col-md-7">
+                        <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+<%--                <div class="form-group">--%>
+<%--                    <label class="control-label col-md-3">Name</label>--%>
+<%--                    <div class="col-md-7">--%>
+<%--                        <input type="text" class="form-control" name="name"--%>
+<%--                               value="${author.name }" />--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="form-group">--%>
+<%--                    <label class="control-label col-md-3">Photo</label>--%>
+<%--                    <div class="col-md-7">--%>
+<%--                        <input type="file" class="form-control" name="picture" id="picture" accept="image/png, image/jpeg"--%>
+<%--                               value="${author.picture }" />--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+                <div class="form-group ">
+                    <input type="submit" class="btn btn-primary" value="Add author" />
+                </div>
+            </form>
+        </div>
+    </c:when>
+    <c:when test="${mode=='MODE_UPDATE_AUTHOR' }">
+        <div class="container text-center">
+            <h3>Update Author</h3>
+            <hr>
+            <form class="form-horizontal" method="POST" action="add-author">
+                <input type="hidden" name="id" value="${author.id }" />
+                <div class="form-group">
+                    <label class="control-label col-md-3">Title</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="name"
+                               value="${author.name }" />
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <input type="submit" class="btn btn-primary" value="Update" />
+                </div>
+            </form>
+        </div>
+    </c:when>
+
 </c:choose>
 
 <script src="static/js/jquery-1.11.1.min.js"></script>
