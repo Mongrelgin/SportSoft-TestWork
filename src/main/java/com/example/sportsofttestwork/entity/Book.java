@@ -15,7 +15,7 @@ public class Book extends AbstractEntity{
     private String title;
 
     @Lob
-    private Byte[] picture;
+    private byte[] picture;
 
     @ManyToOne
     @JoinColumn(name = "genre_id")

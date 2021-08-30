@@ -17,6 +17,7 @@ public class GenreController {
 
     @RequestMapping("/genre")
     public String genre(HttpServletRequest request) {
+        request.setAttribute("genres", genreService.getAllGenres());
         request.setAttribute("mode", "MODE_GENRE");
         return "mainscreen";
     }

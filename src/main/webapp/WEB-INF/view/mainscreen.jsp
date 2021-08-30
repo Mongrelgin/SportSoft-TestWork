@@ -164,7 +164,105 @@
             </form>
         </div>
     </c:when>
+    <c:when test="${mode=='MODE_BOOK' }">
+        <div class="container text-center" id="booksDiv">
+            <h3>Books</h3>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="book" items="${books }">
+                        <tr>
+                            <td>${book.id}</td>
+                            <td>${book.title}</td>
+                            <td>${book.genre.title}</td>
+                            <td>${book.author.name}</td>
+                            <td><a href="/delete-book?id=${book.id }"><span
+                                    class="glyphicon glyphicon-trash"></span></a></td>
+                            <td><a href="/edit-book?id=${book.id }"><span
+                                    class="glyphicon glyphicon-pencil"></span></a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container text-center">
+            <h3>New Book</h3>
+            <hr>
+            <form class="form-horizontal" method="POST" action="add-book" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Title</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="title" id="title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Author</label>
+                    <div class="col-md-7">
+                        <select name="author" id="author">
+                            <c:forEach items="${authorsList}" var="author">
+                                <option value="${author.id}"
+                                        <c:if test="${author.id eq selectedAuthor}">selected="selected"</c:if>>
+                                    ${author.name}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Genre</label>
+                    <div class="col-md-7">
+                        <select name="genre" id="genre">
+                            <c:forEach items="${genresList}" var="genre">
+                                <option value="${genre.id}"
+                                        <c:if test="${genre.id eq selectedGenre}">selected="selected"</c:if>>
+                                        ${genre.title}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Picture</label>
+                    <div class="col-md-7">
+                        <input type="file" class="form-control" name="picture" id="picture" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <input type="submit" class="btn btn-primary" value="Add book" />
+                </div>
+            </form>
+        </div>
+    </c:when>
+    <c:when test="${mode=='MODE_UPDATE_BOOK' }">
+        <div class="container text-center">
+            <h3>Update Author</h3>
+            <hr>
+            <form class="form-horizontal" method="POST" action="update-author">
+                <input type="hidden" name="id" value="${author.id }" />
+                <div class="form-group">
+                    <label class="control-label col-md-3">Name</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="name"
+                               value="${author.name }" />
+                    </div>
+                </div>
 
+                <div class="form-group ">
+                    <input type="submit" class="btn btn-primary" value="Update" />
+                </div>
+            </form>
+        </div>
+    </c:when>
 </c:choose>
 
 <script src="static/js/jquery-1.11.1.min.js"></script>
