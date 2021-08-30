@@ -1,4 +1,6 @@
 <!DOCTYPE html >
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -83,8 +85,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">Title</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" name="title"
-                               value="${genre.title }" />
+                        <input type="text" class="form-control" name="name"
+                               value="${genre.name }" />
                     </div>
                 </div>
                 <div class="form-group ">
@@ -109,7 +111,7 @@
                     <c:forEach var="author" items="${authors }">
                         <tr>
                             <td>${author.id}</td>
-                            <td>${author.title}</td>
+                            <td>${author.name}</td>
                             <td><a href="/delete-author?id=${author.id }"><span
                                     class="glyphicon glyphicon-trash"></span></a></td>
                             <td><a href="/edit-author?id=${author.id }"><span
@@ -136,20 +138,6 @@
                         <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg">
                     </div>
                 </div>
-<%--                <div class="form-group">--%>
-<%--                    <label class="control-label col-md-3">Name</label>--%>
-<%--                    <div class="col-md-7">--%>
-<%--                        <input type="text" class="form-control" name="name"--%>
-<%--                               value="${author.name }" />--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="form-group">--%>
-<%--                    <label class="control-label col-md-3">Photo</label>--%>
-<%--                    <div class="col-md-7">--%>
-<%--                        <input type="file" class="form-control" name="picture" id="picture" accept="image/png, image/jpeg"--%>
-<%--                               value="${author.picture }" />--%>
-<%--                    </div>--%>
-<%--                </div>--%>
                 <div class="form-group ">
                     <input type="submit" class="btn btn-primary" value="Add author" />
                 </div>
@@ -160,10 +148,10 @@
         <div class="container text-center">
             <h3>Update Author</h3>
             <hr>
-            <form class="form-horizontal" method="POST" action="add-author">
+            <form class="form-horizontal" method="POST" action="update-author">
                 <input type="hidden" name="id" value="${author.id }" />
                 <div class="form-group">
-                    <label class="control-label col-md-3">Title</label>
+                    <label class="control-label col-md-3">Name</label>
                     <div class="col-md-7">
                         <input type="text" class="form-control" name="name"
                                value="${author.name }" />

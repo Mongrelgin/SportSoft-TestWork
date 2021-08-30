@@ -28,7 +28,7 @@ public class AuthorService {
     }
 
     public void deleteAuthor(Long id) {
-        if (repository.findById(id).get().getBooks().size() == 0) {
+        if (repository.findById(id).get().getBooks().size() > 0) {
             LOGGER.log(Level.SEVERE, "Can't delete authors to which books are linked!");
             return;
         }

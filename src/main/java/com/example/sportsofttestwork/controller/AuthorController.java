@@ -5,8 +5,6 @@ import com.example.sportsofttestwork.service.AuthorService;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +19,7 @@ public class AuthorController {
 
     @RequestMapping("/author")
     public String genre(HttpServletRequest request) {
+        request.setAttribute("authors", authorService.getAllAuthors());
         request.setAttribute("mode", "MODE_AUTHOR");
         return "mainscreen";
     }
@@ -33,39 +32,30 @@ public class AuthorController {
         authorService.saveAuthor(author);
 
         request.setAttribute("authors", authorService.getAllAuthors());
-        request.setAttribute("mode", "MODE_AUTHORS");
+        request.setAttribute("mode", "MODE_AUTHOR");
         return "mainscreen";
     }
 
-    /*
-    @RequestMapping("/add-author")
-    public String addAuthor(@ModelAttribute Author author, BindingResult bindingResult, HttpServletRequest request) {
-        System.out.println(author.getId());
-        System.out.println(author.getName());
-        System.out.println(author.getPicture());
-
-        authorService.saveAuthor(author);
+    @RequestMapping("/delete-author")
+    public String deleteAuthor(@RequestParam Long id, HttpServletRequest request) {
+        authorService.deleteAuthor(id);
         request.setAttribute("authors", authorService.getAllAuthors());
-        request.setAttribute("mode", "MODE_AUTHORS");
+        request.setAttribute("mode","MODE_AUTHOR");
         return "mainscreen";
     }
 
-     */
-    /*
-
-    @RequestMapping("/delete-genre")
-    public String deleteGenre(@RequestParam Long id, HttpServletRequest request) {
-        genreService.deleteGenre(id);
-        request.setAttribute("genres", genreService.getAllGenres());
-        request.setAttribute("mode","MODE_GENRE");
+    @RequestMapping("/edit-author")
+    public String editAuthor(@RequestParam Long id, HttpServletRequest request) {
+        request.setAttribute("author", authorService.getAuthorById(id));
+        request.setAttribute("mode","MODE_UPDATE_AUTHOR");
         return "mainscreen";
     }
 
-    @RequestMapping("/edit-genre")
-    public String editUser(@RequestParam Long id, HttpServletRequest request) {
-        request.setAttribute("genre", genreService.getGenreById(id));
-        request.setAttribute("mode","MODE_UPDATE_GENRE");
+    @RequestMapping("/update-author")
+    public String updateAuthor(@RequestParam Long id, @RequestParam String name, HttpServletRequest request) {
+        authorService.getAuthorById(id).setName(name);
+        request.setAttribute("authors", authorService.getAllAuthors());
+        request.setAttribute("mode","MODE_AUTHOR");
         return "mainscreen";
     }
-     */
 }
