@@ -39,4 +39,19 @@ public class BookService  {
         }
         repository.save(book);
     }
+
+    public void plusBookById(Long id) {
+        Book book = repository.findById(id).get();
+        Long counter = book.getCounter();
+        book.setCounter(++counter);
+        repository.save(book);
+    }
+    public void minusBookById(Long id) {
+        if (repository.findById(id).get().getCounter() > 0) {
+            Book book = repository.findById(id).get();
+            Long counter = book.getCounter();
+            book.setCounter(--counter);
+            repository.save(book);
+        }
+    }
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 @Controller
@@ -30,6 +32,11 @@ public class AuthorController {
         author.setName(Jsoup.parse(name).text());
         author.setPicture(image.getBytes());
         authorService.saveAuthor(author);
+
+        String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\authors\\" + image.getName() + ".jpg";
+        image.transferTo(new File(path));
+
+
 
         request.setAttribute("authors", authorService.getAllAuthors());
         request.setAttribute("mode", "MODE_AUTHOR");

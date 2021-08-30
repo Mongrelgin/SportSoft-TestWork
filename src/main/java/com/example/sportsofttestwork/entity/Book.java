@@ -14,6 +14,10 @@ public class Book extends AbstractEntity{
     @NotEmpty
     private String title;
 
+    @NotNull
+    @NotEmpty
+    private Long counter;
+
     @Lob
     private byte[] picture;
 
@@ -33,4 +37,5 @@ public class Book extends AbstractEntity{
                 ", author=" + author +
                 '}';
     }
+
 }

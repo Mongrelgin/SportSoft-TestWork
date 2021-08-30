@@ -176,6 +176,7 @@
                         <th>Title</th>
                         <th>Genre</th>
                         <th>Author</th>
+                        <th>Counter</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -185,6 +186,11 @@
                             <td>${book.title}</td>
                             <td>${book.genre.title}</td>
                             <td>${book.author.name}</td>
+                            <td>${book.counter}</td>
+                            <td><a href="/plus-book?id=${book.id }"><span
+                                    class="glyphicon glyphicon-plus"></span></a></td>
+                            <td><a href="/minus-book?id=${book.id }"><span
+                                    class="glyphicon glyphicon-minus"></span></a></td>
                             <td><a href="/delete-book?id=${book.id }"><span
                                     class="glyphicon glyphicon-trash"></span></a></td>
                             <td><a href="/edit-book?id=${book.id }"><span
@@ -247,13 +253,13 @@
         <div class="container text-center">
             <h3>Update Author</h3>
             <hr>
-            <form class="form-horizontal" method="POST" action="update-author">
-                <input type="hidden" name="id" value="${author.id }" />
+            <form class="form-horizontal" method="POST" action="update-book">
+                <input type="hidden" name="id" value="${book.id }" />
                 <div class="form-group">
                     <label class="control-label col-md-3">Name</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" name="name"
-                               value="${author.name }" />
+                        <input type="text" class="form-control" name="title"
+                               value="${book.title }" />
                     </div>
                 </div>
 
