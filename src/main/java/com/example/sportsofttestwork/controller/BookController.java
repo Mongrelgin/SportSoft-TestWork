@@ -30,11 +30,7 @@ public class BookController {
 
     @RequestMapping("/book")
     public String book(HttpServletRequest request) {
-        request.setAttribute("books", bookService.getAllBooks());
-        request.setAttribute("mode", "MODE_BOOK");
-        request.setAttribute("authorsList", authorService.getAllAuthors());
-        request.setAttribute("genresList", genreService.getAllGenres());
-        return "mainscreen";
+        return setBookScreen(request);
     }
 
     @RequestMapping("/add-book")
@@ -50,40 +46,35 @@ public class BookController {
         String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\books\\" + picture.getName() + ".jpg";
         picture.transferTo(new File(path));
 
-        request.setAttribute("books", bookService.getAllBooks());
-        request.setAttribute("mode", "MODE_BOOK");
-        request.setAttribute("authorsList", authorService.getAllAuthors());
-        request.setAttribute("genresList", genreService.getAllGenres());
-        return "mainscreen";
+        return setBookScreen(request);
     }
 
     @RequestMapping("delete-book")
     public String deleteBook(@RequestParam Long id, HttpServletRequest request) {
         bookService.deleteBook(id);
-        request.setAttribute("books", bookService.getAllBooks());
-        request.setAttribute("mode","MODE_BOOK");
-        request.setAttribute("authorsList", authorService.getAllAuthors());
-        request.setAttribute("genresList", genreService.getAllGenres());
-        return "mainscreen";
+        return setBookScreen(request);
     }
 
     @RequestMapping("plus-book")
     public String plusBook(@RequestParam Long id, HttpServletRequest request) {
         bookService.plusBookById(id);
-        request.setAttribute("books", bookService.getAllBooks());
-        request.setAttribute("mode","MODE_BOOK");
-        request.setAttribute("authorsList", authorService.getAllAuthors());
-        request.setAttribute("genresList", genreService.getAllGenres());
-        return "mainscreen";
+        return setBookScreen(request);
     }
 
     @RequestMapping("minus-book")
     public String minusBook(@RequestParam Long id, HttpServletRequest request) {
         bookService.minusBookById(id);
+        return setBookScreen(request);
+    }
+
+    private String setBookScreen(HttpServletRequest request) {
+        String mode = "MODE_BOOK";
+
         request.setAttribute("books", bookService.getAllBooks());
-        request.setAttribute("mode","MODE_BOOK");
+        request.setAttribute("mode",mode);
         request.setAttribute("authorsList", authorService.getAllAuthors());
         request.setAttribute("genresList", genreService.getAllGenres());
+
         return "mainscreen";
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 @Controller
@@ -21,9 +20,7 @@ public class AuthorController {
 
     @RequestMapping("/author")
     public String genre(HttpServletRequest request) {
-        request.setAttribute("authors", authorService.getAllAuthors());
-        request.setAttribute("mode", "MODE_AUTHOR");
-        return "mainscreen";
+        return setAuthorScreen(request);
     }
 
     @RequestMapping("/add-author")
@@ -36,19 +33,13 @@ public class AuthorController {
         String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\authors\\" + image.getName() + ".jpg";
         image.transferTo(new File(path));
 
-
-
-        request.setAttribute("authors", authorService.getAllAuthors());
-        request.setAttribute("mode", "MODE_AUTHOR");
-        return "mainscreen";
+        return setAuthorScreen(request);
     }
 
     @RequestMapping("/delete-author")
     public String deleteAuthor(@RequestParam Long id, HttpServletRequest request) {
         authorService.deleteAuthor(id);
-        request.setAttribute("authors", authorService.getAllAuthors());
-        request.setAttribute("mode","MODE_AUTHOR");
-        return "mainscreen";
+        return setAuthorScreen(request);
     }
 
     @RequestMapping("/edit-author")
@@ -61,8 +52,14 @@ public class AuthorController {
     @RequestMapping("/update-author")
     public String updateAuthor(@RequestParam Long id, @RequestParam String name, HttpServletRequest request) {
         authorService.getAuthorById(id).setName(name);
+        return setAuthorScreen(request);
+    }
+
+    private String setAuthorScreen(HttpServletRequest request) {
+        String mode = "MODE_AUTHOR";
+
         request.setAttribute("authors", authorService.getAllAuthors());
-        request.setAttribute("mode","MODE_AUTHOR");
+        request.setAttribute("mode",mode);
         return "mainscreen";
     }
 }
