@@ -43,7 +43,10 @@ public class BookController {
         book.setGenre(genreService.getGenreById(genre));
         bookService.saveBook(book);
 
-        String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\books\\" + picture.getName() + ".jpg";
+        String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\books\\" +
+                picture.getName() + "-id" +
+                book.getId() + ".jpg";
+
         picture.transferTo(new File(path));
 
         return setBookScreen(request);

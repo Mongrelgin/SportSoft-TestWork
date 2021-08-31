@@ -42,7 +42,7 @@ public class GenreController {
     private String setGenreScreen(HttpServletRequest request) {
         String mode = "MODE_GENRE";
 
-        request.setAttribute("authors", genreService.getAllGenres());
+        request.setAttribute("genres", genreService.getAllGenres());
         request.setAttribute("mode",mode);
         return "mainscreen";
     }

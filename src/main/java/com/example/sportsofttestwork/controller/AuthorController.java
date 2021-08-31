@@ -30,7 +30,9 @@ public class AuthorController {
         author.setPicture(image.getBytes());
         authorService.saveAuthor(author);
 
-        String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\authors\\" + image.getName() + ".jpg";
+        String path = "C:\\Users\\mongr\\Desktop\\Sportsoft\\SportSoft-TestWork\\pics\\authors\\" +
+                image.getName() + "-id" +
+                author.getId() + ".jpg";
         image.transferTo(new File(path));
 
         return setAuthorScreen(request);
